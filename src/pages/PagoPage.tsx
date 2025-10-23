@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { loadStripe, type Stripe } from '@stripe/stripe-js';
+import { loadStripe,} from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { CheckoutForm } from '../components/CheckoutForm';
