@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { loadStripe,} from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { CheckoutForm } from '../components/CheckoutForm';
@@ -16,6 +16,16 @@ export const PagoPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState('');
+  const [formData, setFormData] = useState({
+    carnet: '',
+    estudiante: '',
+    mes: '',
+    semestre: '',
+    anio: '',
+    monto: '',
+    transaccion: '',
+    status: 'Pagado', // Por defecto lo ponemos en "Pagado"
+  });
 
   const handleCreatePaymentIntent = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,6 +76,85 @@ export const PagoPage = () => {
       {/* 1. Muestra formulario de Monto */}
       {!clientSecret && (
         <Box component="form" onSubmit={handleCreatePaymentIntent} sx={{ maxWidth: 400 }}>
+          
+          <Typography variant="h6">Carnet</Typography>
+          <TextField
+            label="Carnet"
+            variant="outlined"
+            fullWidth
+            type="string"
+            name="carnet"
+            value={formData.carnet}
+            onChange={(e) => setFormData({ ...formData, carnet: e.target.value })}
+            margin="normal"
+          />
+          <Typography variant="h6">Estudiante</Typography>
+          <TextField
+            label="Estudiante"
+            variant="outlined"
+            fullWidth
+            type="string"
+            name="estudiante"
+            value={formData.estudiante}
+            onChange={(e) => setFormData({ ...formData, estudiante: e.target.value })}
+            margin="normal"
+          />
+          <Typography variant="h6">Mes</Typography>
+          <TextField
+            label="Mes"
+            variant="outlined"
+            fullWidth
+            type="string"
+            name="mes"
+            value={formData.mes}
+            onChange={(e) => setFormData({ ...formData, mes: e.target.value })}
+            margin="normal"
+          />
+          <Typography variant="h6">Semestre</Typography>
+          <TextField
+            label="Semestre"
+            variant="outlined"
+            fullWidth
+            type="string"
+            name="semestre"
+            value={formData.semestre}
+            onChange={(e) => setFormData({ ...formData, semestre: e.target.value })}
+            margin="normal"
+          />
+          <Typography variant="h6">Año</Typography>
+          <TextField
+            label="Año"
+            variant="outlined"
+            fullWidth
+            type="string"
+            name="anio"
+            value={formData.anio}
+            onChange={(e) => setFormData({ ...formData, anio: e.target.value })}
+            margin="normal"
+          />
+          <Typography variant="h6">Monto</Typography>
+          <TextField
+            label="Monto"
+            variant="outlined"
+            fullWidth
+            type="string"
+            name="monto"
+            value={formData.monto}
+            onChange={(e) => setFormData({ ...formData, monto: e.target.value })}
+            margin="normal"
+          />
+         
+          <Typography variant="h6">Estatus</Typography>
+          <TextField
+            label="Estatus"
+            variant="outlined"
+            fullWidth
+            type="string"
+            name="status"
+            value={formData.status}
+            onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+            margin="normal"
+          />
           <Typography variant="h6">Ingresa el monto a pagar (USD)</Typography>
           <TextField
             label="Monto"

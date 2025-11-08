@@ -1,31 +1,36 @@
 import axios from 'axios';
 
-// Lee la URL de la API desde las variables de entorno de Vite
-const API_BASE_URL = `${import.meta.env.VITE_API_URL}/customer`;
+// Endpoint de la API para crear una matrícula
+const API_BASE_URL = `${import.meta.env.VITE_API_URL}/matricula`;
 
-export type Cliente = {
-  id?: number;
-  nombre: string;
-  apellido: string;
-  direccion: string;
-  correo: string;
-  telefono: string;
-  ingreso?: string;
-}
-
-export const getClientes = async () => {
-  return await axios.get(API_BASE_URL);
+// Tipo de datos que se enviarán para crear la matrícula
+export type Matricula = {
+  carnet: string;
+  estudiante: string;
+  mes: string;
+  semestre: string;
+  anio: string;
+  monto: string;
+  transaccion: string;
+  status: string;
 };
 
-export const createCliente = async (cliente: Cliente) => {
-  const data = { ...cliente, ingreso: new Date().toISOString() };
-  return await axios.post(`${API_BASE_URL}/create/`, data);
+// Función para crear la matrícula en el backend
+export const createMatricula = async (matricula: Matricula) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/create`, matricula);
+    return response.data;
+  } catch (error) {
+    console.error('Error al crear matrícula', error);
+    throw error;
+  }
+  
 };
-
-export const updateCliente = async (id: number, cliente: Cliente) => {
-  return await axios.put(`${API_BASE_URL}/update/${id}`, cliente);
-};
-
-export const deleteCliente = async (id: number) => {
-  return await axios.delete(`${API_BASE_URL}/delete/${id}`);
+export const getMatriculas = async () => {
+  try {
+    const response = await axios.get(API_BASE_URL);
+    return response.data; // Debería devolver una lista de matrículas
+  } catch (error) {
+    throw new Error('Error al obtener las matrículas');
+  }
 };
