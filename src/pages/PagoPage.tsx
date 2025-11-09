@@ -5,7 +5,7 @@ import axios from 'axios';
 import { CheckoutForm } from '../components/CheckoutForm';
 import { Alert, Box, CircularProgress, Typography, TextField, Button } from '@mui/material';
 
-// ⬇️ RECUERDA PONER TU CLAVE PÚBLICA REAL DE STRIPE ⬇️
+
 const STRIPE_PUBLIC_KEY = 'pk_test_51SLBj3Cf4KizvED6FGm9bbwa4vKAMOnxpZbCsN0NjGvWEVDHU2q7AZH8rpFVDAXkuivArnuQ5vuDdUJQR81mupVP008EEbKhvU'; 
 const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 

@@ -6,7 +6,6 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleIcon from '@mui/icons-material/People';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PaymentIcon from '@mui/icons-material/Payment';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -16,8 +15,8 @@ const drawerWidth = 240;
 
 const menuItems = [
   { text: 'Tableros', icon: <DashboardIcon />, path: '/dashboard' },
-  { text: 'Clientes', icon: <PeopleIcon />, path: '/clientes' },
-  { text: 'Productos', icon: <ShoppingCartIcon />, path: '/productos' },
+  { text: 'Matriculas', icon: <PeopleIcon />, path: '/clientes' },
+
   { text: 'Pagos', icon: <PaymentIcon />, path: '/pagos' },
 ];
 
